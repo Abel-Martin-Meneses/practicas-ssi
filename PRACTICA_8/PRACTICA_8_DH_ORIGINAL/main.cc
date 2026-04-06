@@ -2,7 +2,19 @@
 
 #include "funciones.h"
 
-int main() {
+int main(int argc, char* argv[]) {
+  bool ejemplo_guion{false};
+  if (argc != 1 && argc != 2) {
+    std::cerr << "El programa se tiene que ejecutar con uno o ningún argumento.\n";
+    return 1;
+  } else if (argc == 2 && std::string(argv[1]) == "eg") {
+    ejemplo_guion = true;
+  }
+
+  if (ejemplo_guion) {
+    EjecutarEjemplosGuion();
+    return 0;
+  }
   int primo{0};
   int alpha{0};
   int secreto_A{0};
