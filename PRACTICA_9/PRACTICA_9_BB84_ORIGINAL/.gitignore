@@ -1,0 +1,8 @@
+# Entornos virtuales
+venv_ssi/
+venv/
+env/
+
+# Archivos temporales y cachés de Python
+__pycache__/
+*.pyc
