@@ -22,8 +22,12 @@ int main(int argc, char* argv[]) {
   ProcesarDatos(primo, alpha, secreto_A, secreto_B);
   int num_yA{ExpoRapida(alpha, secreto_A, primo)};
   int num_yB{ExpoRapida(alpha, secreto_B, primo)};
-  int clave_compartida{ExpoRapida(num_yA, secreto_B, primo)};
-  ImprimirSolucion(primo, alpha, secreto_A, secreto_B, num_yA, num_yB, clave_compartida);
+  int clave_compartida_B{ExpoRapida(num_yA, secreto_B, primo)};
+  int clave_compartida_A{ExpoRapida(num_yB, secreto_A, primo)};
+  if (clave_compartida_A != clave_compartida_B) {
+    std::cerr << "Algo pasó con las claves\n";
+  }
+  ImprimirSolucion(primo, alpha, secreto_A, secreto_B, num_yA, num_yB, clave_compartida_A);
   
   return 0;
 }
