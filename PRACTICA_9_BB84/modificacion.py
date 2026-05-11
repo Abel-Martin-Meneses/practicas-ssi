@@ -8,6 +8,8 @@ qubit_index = 0
 backend = AerSimulator()
 message = [QuantumCircuit(1, 2) for _ in range(n)]
 
+ataque = input("Introduce 's' para simular un ataque de Eve(si no introduce nada no se simula el ataque): ").strip().lower()
+
 # Preparación de estados (Alice)
 alice_bits = np.random.randint(2, size=n)
 alice_bases = np.random.randint(2, size=n)
@@ -17,6 +19,20 @@ for i, qc in enumerate(message):
         qc.x(0)
     if alice_bases[i] == 1:
         qc.h(0)
+        
+if ataque == 's':
+    # ATAQUE DE EVE
+    eve_bases = np.random.randint(2, size=n)
+    classical_bit_index_for_eve = 1 
+
+    for i, qc in enumerate(message):
+        if eve_bases[i] == 1:
+            qc.h(0)
+    
+        qc.measure(qubit_index, classical_bit_index_for_eve)
+    
+        if eve_bases[i] == 1:
+            qc.h(0)
 
 # Cambio de bases (Bob)
 bob_bases = np.random.randint(2, size=n)
@@ -60,4 +76,6 @@ qber = errores / len(alice_key) if len(alice_key) > 0 else 0
 
 print(f"Longitud original (n): {n} bits")
 print(f"Longitud de la clave final coincidente: {len(alice_key)} bits")
+print(f"Número de errores detectados: {errores}")
 print(f"Tasa de error cuántico (QBER): {qber}")
+print("Si la tasa de error cuántico es 11 o superior, considere que haya un atacante presente en la comunicación.")
