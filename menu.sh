@@ -13,12 +13,15 @@ ejecutar_cpp() {
         
         # Ejecuta el programa
         echo -e "\n--- Ejecutando $EXEC ---\n"
+        # Intentamos ejecutar el binario. Si el nombre en el Makefile es distinto de $EXEC,
+        # puedes cambiarlo en la llamada de la función abajo.
         ./"$EXEC"
         
         # Vuelve al directorio principal
         cd - > /dev/null
     else
-        echo -e "\n[ERROR] No se encontró el directorio:\n$DIR\n(Puede que esta práctica no tenga esta versión específica)."
+        echo -e "\n[ERROR] No se encontró el directorio:\n$DIR"
+        echo "Asegúrate de que la carpeta existe y el nombre es correcto."
     fi
 }
 
@@ -89,6 +92,7 @@ while true; do
     echo "======================================================"
     echo "          MENÚ DE PRÁCTICAS DE SSI                    "
     echo "======================================================"
+    echo "  1. Práctica 1: Cifrado de Vernam"
     echo "  2. Práctica 2: Cifrado Vigenère"
     echo "  3. Práctica 3: Generador ChaCha20"
     echo "  4. Práctica 4: Generador C/A GPS"
@@ -105,6 +109,7 @@ while true; do
     read -p "Elige una práctica: " opcion
 
     case $opcion in
+        1) seleccionar_version_cpp "Práctica 1 (Vernam)" "PRACTICA_1/PRACTICA_1_ORIGINAL" "PRACTICA_1/Modificación Práctica 1 - Cifrado de Vernam" "cifrado_vernam" ;;
         2) seleccionar_version_cpp "Práctica 2 (Vigenère)" "PRACTICA_2/PRACTICA_2_CIFRADO_VIGENERE" "PRACTICA_2/PRACTICA_2_CIFRADO_VIGENERE_MODIFICACION" "cifrado_vigenere" ;;
         3) seleccionar_version_cpp "Práctica 3 (ChaCha20)" "PRACTICA_3/PRACTICA_3_CHACHA20 ORIGINAL" "PRACTICA_3/PRACTICA_3_CHACHA20 MODIFICACION" "chacha20" ;;
         4) seleccionar_version_cpp "Práctica 4 (GPS)" "PRACTICA_4/PRACTICA_4_GPS_ORIGINAL" "PRACTICA_4/PRACTICA_4_GPS_MODIFICACION" "gps" ;;

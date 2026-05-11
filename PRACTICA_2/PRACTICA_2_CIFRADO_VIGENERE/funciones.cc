@@ -1,26 +1,5 @@
 #include "funciones.h"
 
-/*
-const std::string ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-std::string CifradoVigenere(std::string mensaje, std::string clave) {
-  std::string resultado = "";
-  int N = ALFABETO.length();
-  for (size_t i = 0; i < mensaje.size(); i++) {
-    size_t pos_m = ALFABETO.find(mensaje[i]);
-    size_t pos_k = ALFABETO.find(clave[i % clave.size()]);
-    if (pos_m == std::string::npos) {
-      resultado += mensaje[i];
-    } else {
-      // AQUÍ IRÍA LA LÓGICA SI NOS PIDEN SUMAR EN POSICIONES IMPARES Y RESTAR EN PARES Y VICEVERSA
-      int nueva_pos = (pos_m + pos_k) % N;
-      resultado += ALFABETO[nueva_pos];
-    }
-  }
-  return resultado;
-}
-*/
-
-
 std::string CifradoVigenere(std::string mensaje_usuario, std::string clave) {
   std::string resultado{""};
   for (size_t i{0}; i < mensaje_usuario.size(); i++) {
@@ -30,27 +9,6 @@ std::string CifradoVigenere(std::string mensaje_usuario, std::string clave) {
   }
   return resultado;
 }
-
-
-/*
-std::string DescifradoVigenere(std::string mensaje, std::string clave) {
-  std::string resultado = "";
-  int N = ALFABETO.length();
-  for (size_t i = 0; i < mensaje.size(); i++) {
-    size_t pos_m = ALFABETO.find(mensaje[i]);
-    size_t pos_k = ALFABETO.find(clave[i % clave.size()]);
-    if (pos_m == std::string::npos) {
-      resultado += mensaje[i];
-    } else {
-      // AQUÍ IRÍA LA LÓGICA DE SUMAR EN IMPARES Y RESTAR EN PARES Y VICEVERSA
-      int nueva_pos = (static_cast<int>(pos_m) - static_cast<int>(pos_k));
-      if (nueva_pos < 0) nueva_pos += N; 
-      resultado += ALFABETO[nueva_pos % N];
-    }
-  }
-  return resultado;
-}
-*/
 
 std::string DescifradoVigenere(std::string mensaje_usuario, std::string clave) {
   std::string resultado{""};
